@@ -26,3 +26,15 @@ Server starts on `http://localhost:3000`.
 ```sh
 $ npm start
 ```
+
+## API
+The main goal of the project is to provide access to pin controls. API has been split to two routes `user` and `pins`.
+
+#### Change voltage state of selected GPIO.
+```
+/pins/change_state/:pin
+```
+#### Get current voltage state of selected GPIO.
+```
+/pins/get_state/:pin
+```

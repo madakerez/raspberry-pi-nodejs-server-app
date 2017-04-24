@@ -41,3 +41,4 @@ The main goal of the project is to provide access to pin controls. API has been 
 ### In progress
 * Improve middleware token authorization.
 * Improve `change_state` method server response.
+* Add Node.js prod/dev NODE_ENV

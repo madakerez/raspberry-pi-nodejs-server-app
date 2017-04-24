@@ -38,3 +38,6 @@ The main goal of the project is to provide access to pin controls. API has been 
 ```
 /pins/get_state/:pin
 ```
+### In progress
+* Improve middleware token authorization.
+* Improve `change_state` method server response.

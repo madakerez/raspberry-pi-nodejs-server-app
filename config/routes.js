@@ -9,14 +9,11 @@ const pinsRouter = express.Router();
 
 /*user auth middleware*/
 pinsRouter.get('/*', (req, res, next) => {
-  let activeUsers = userAuth.activeUsers;
-  /* TODO prepare middleware for token post params auth */
-  let authData = userAuth.authData.AUTH_NAME;
-  let userIndex = activeUsers.indexOf(authData);
-  if (userIndex > -1) {
+  let queryToken = req.query.token;
+  if (userAuth.isTokenValid(queryToken)) {
     next();
   } else {
-    res.redirect('/');
+    res.status(401).send('Unauthorized');
   }
 });
 

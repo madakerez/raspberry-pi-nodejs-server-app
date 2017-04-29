@@ -1,27 +1,37 @@
-var fs = require('fs');
+const fs = require('fs');
+const { generateToken } =  require(appRoot + '/app/utils');
 
 class UserAuth {
   constructor() {
     this.getConfigFile();
     this.authData = null;
-    this.activeUsers = ['scz'];
+    this.usersTokens = [];
   }
 
   userAuth(userName, userPassword, res) {
-    if (userName === this.authData.AUTH_NAME && userPassword === this.authData.AUTH_TOKEN) {
-      this.userAuthAuthorized(res);
+    if (userName === this.authData.AUTH_NAME && userPassword === this.authData.AUTH_PASSWORD) {
+      let token = generateToken(this.authData.AUTH_TOKEN);
+      this.usersTokens.push(token);
+      this.userAuthorized(res, token);
     } else {
-      this.userAuthUnauthorized(res);
+      this.userUnauthorized(res);
     }
   }
 
-  userAuthAuthorized(res) {
-    this.activeUsers.push(this.authData.AUTH_NAME);
-    res.send('ok')
+  userAuthorized(res, token) {
+    let responseData = {
+      messageText: 'authorized',
+      authToken: token
+    }
+    res.send(responseData);
   }
 
-  userAuthUnauthorized(res) {
+  userUnauthorized(res) {
     res.status(401).send('Bad name or password');
+  }
+
+  isTokenValid(token) {
+    return this.usersTokens.indexOf(token) !== -1;
   }
 
   logout() {
@@ -33,7 +43,7 @@ class UserAuth {
 
   getConfigFile() {
     fs.readFile(appRoot + '/config.json', 'utf8', (err, data) => {
-      if (err) throw err;
+      if (err) throw 'No config.json file';
       this.authData = JSON.parse(data);
     });
   }

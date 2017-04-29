@@ -1,4 +1,5 @@
 {
   "AUTH_NAME": "example_name",
+  "AUTH_PASSWORD": "example_password",
   "AUTH_TOKEN": "example_token"
 }

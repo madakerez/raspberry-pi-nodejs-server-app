@@ -13,7 +13,7 @@ pinsRouter.get('/*', (req, res, next) => {
   if (userAuth.isTokenValid(queryToken)) {
     next();
   } else {
-    res.status(401).send('Unauthorized');
+    res.status(401).send('You are not authorized');
   }
 });
 

@@ -22,6 +22,6 @@ app.use('/pins', router.pins);
 app.use('/user', router.user);
 
 var server = app.listen(3000, function() {
-  console.log(`Raspberry server start`);
+  console.log(`Raspberry server start in ${app.get('env')} mode`);
   console.log(`Server running at http://localhost:${server.address().port}`)
 });

@@ -1,3 +1,9 @@
+```
+function test() {
+  console.log("notice the blank line before this function?");
+}
+```
+
 # raspberry-pi-nodejs-server-app
 This is a demo node.js application illustrating [Raspberry Pi](https://github.com/raspberrypi) + [NodeJS](https://github.com/nodejs) usage. 
 App provides access to the Raspberry Pi GPIO interface and supporting regular GPIO.
